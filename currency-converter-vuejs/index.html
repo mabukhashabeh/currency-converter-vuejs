@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <title>Currency Converter</title>
+    <style>
+        * {
+            border-radius: 0 !important;
+        }
+
+        body {
+            background-color: #E7F7F9;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2 class="text-center my-5">Currency Converter</h2>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="from-currency">From</label>
+                <select v-model="from" name="to-currency" id="to-currency" class="form-control">
+                    <option :value="currency.id" v-for="currency in formattedCurrencies">{{ currency.currencyName }}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="to-currency">To</label>
+                <select v-model="to"  name="to-currency" id="to-currency" class="form-control">
+                    <option :value="currency.id" v-for="currency in formattedCurrencies">{{ currency.currencyName }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <input type="text" v-model="amount"  placeholder="Amount" class="form-control my-5">
+            </div>
+        </div>
+        <div class="row my-5 text-center">
+            <div class="col-md-6 offset-md-3">
+                <div class="text-center">
+                    <button v-on:click="convertCurrency()" class="btn btn-lg btn-primary" :disabled="disabled">{{ loading ? 'Converting ...' : 'Convert' }}</button>
+                </div>
+                <h1 class="text-center display-2 mt-5">{{ calculatedCurrencyValue }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
